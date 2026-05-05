@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Update Task{% endblock %}
+
+{% block content %}
+<form method="POST" class="bg-gray-800 p-6 rounded w-80">
+    {% csrf_token %}
+
+    <h2 class="mb-4">{{ task.title }}</h2>
+
+    <select name="status" class="w-full mb-3 p-2 bg-gray-700 rounded">
+        <option value="TODO">To Do</option>
+        <option value="IN_PROGRESS">In Progress</option>
+        <option value="DONE">Done</option>
+    </select>
+
+    <button class="bg-blue-500 px-4 py-2 w-full rounded">Update</button>
+</form>
+{% endblock %}

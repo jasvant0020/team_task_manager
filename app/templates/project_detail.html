@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Project{% endblock %}
+{% block page_title %}{{ project.name }}{% endblock %}
+{% block content %}
+<div class="w-full max-w-6xl">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold">{{ project.name }}</h1>
+
+        <div class="flex gap-2">
+
+            <!-- Admin Only -->
+            {% if request.user == project.created_by %}
+            <a href="/project/{{ project.id }}/members/" 
+            class="bg-yellow-500 px-3 py-2 rounded-lg">
+                Manage Members
+            </a>
+            {% endif %}
+
+            <!-- Add Task -->
+            {% if request.user.role == "ADMIN" %}
+            <a href="/create-task/{{ project.id }}/" 
+            class="bg-green-500 px-4 py-2 rounded-lg">
+                + Add Task
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- Tasks -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- TODO -->
+        <div>
+            <h2 class="text-xl mb-3">To Do</h2>
+            {% for task in tasks %}
+                {% if task.status == "TODO" %}
+                    <div class="bg-gray-800 p-3 mb-2 rounded">
+                        <p class="font-semibold">{{ task.title }}</p>
+                        <p class="text-sm text-gray-400">{{ task.assigned_to.username }}</p>
+                        {% if task.assigned_to == request.user %}
+                        <a href="/update-task/{{ task.id }}/" 
+                        class="text-blue-400 text-sm">
+                            Update
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- IN PROGRESS -->
+        <div>
+            <h2 class="text-xl mb-3">In Progress</h2>
+            {% for task in tasks %}
+                {% if task.status == "IN_PROGRESS" %}
+                    <div class="bg-gray-800 p-3 mb-2 rounded">
+                        <p class="font-semibold">{{ task.title }}</p>
+                        <p class="text-sm text-gray-400">{{ task.assigned_to.username }}</p>
+                        {% if task.assigned_to == request.user %}
+                        <a href="/update-task/{{ task.id }}/" 
+                        class="text-blue-400 text-sm">
+                            Update
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- DONE -->
+        <div>
+            <h2 class="text-xl mb-3">Done</h2>
+            {% for task in tasks %}
+                {% if task.status == "DONE" %}
+                    <div class="bg-gray-800 p-3 mb-2 rounded">
+                        <p class="font-semibold">{{ task.title }}</p>
+                        <p class="text-sm text-gray-400">{{ task.assigned_to.username }}</p>
+                        {% if task.assigned_to == request.user %}
+                        <a href="/update-task/{{ task.id }}/" 
+                        class="text-blue-400 text-sm">
+                            Update
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

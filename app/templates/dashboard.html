@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block content %}
+<div class="w-full max-w-5xl">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold">Dashboard</h1>
+        {% if request.user.role == "ADMIN" %}
+            <a href="/create_project/" class="bg-blue-500 px-4 py-2 rounded-lg">+ New Project</a>
+        {% endif %}
+    </div>
+    {% if request.user.role == "ADMIN" %}
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+
+        <div class="bg-gray-800 p-4 rounded text-center">
+            <p>Total</p>
+            <h2 class="text-2xl font-bold">{{ total_tasks }}</h2>
+        </div>
+
+        <div class="bg-gray-800 p-4 rounded text-center">
+            <p>To Do</p>
+            <h2 class="text-2xl">{{ todo }}</h2>
+        </div>
+
+        <div class="bg-gray-800 p-4 rounded text-center">
+            <p>In Progress</p>
+            <h2 class="text-2xl">{{ in_progress }}</h2>
+        </div>
+
+        <div class="bg-gray-800 p-4 rounded text-center">
+            <p>Done</p>
+            <h2 class="text-2xl">{{ done }}</h2>
+        </div>
+
+        <div class="bg-red-500 p-4 rounded text-center">
+            <p>Overdue</p>
+            <h2 class="text-2xl">{{ overdue }}</h2>
+        </div>
+        
+    </div>
+
+    <!-- Tasks Per User -->
+    <div class="bg-gray-800 p-6 rounded-lg m-6">
+        <h2 class="text-xl font-semibold mb-4">Tasks per User</h2>
+
+        {% if tasks_per_user %}
+            <div class="space-y-3">
+                {% for user in tasks_per_user %}
+                    <div class="flex justify-between items-center bg-gray-700 p-3 rounded-lg">
+                        <span class="font-medium">
+                            {{ user.assigned_to__username }}
+                        </span>
+                        <span class="bg-blue-500 px-3 py-1 rounded-full text-sm">
+                            {{ user.count }} Tasks
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-400">No tasks assigned yet.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    <!-- Projects List -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% for project in projects %}
+            <a href="/project/{{ project.id }}/">
+                <div class="bg-gray-800 p-4 rounded-lg shadow hover:bg-gray-700">
+                    <h2 class="text-xl font-semibold">{{ project.name }}</h2>
+                    <p class="text-gray-400">{{ project.description }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p>No projects yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

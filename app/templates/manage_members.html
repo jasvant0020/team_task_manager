@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block page_title %}Manage Members{% endblock %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto">
+
+    <!-- Project Title -->
+    <h2 class="text-2xl font-bold mb-6 text-center">
+        👥 Manage Members - {{ project.name }}
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Add Members -->
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3 class="text-lg font-semibold mb-4 text-green-400">
+                ➕ Add Members
+            </h3>
+
+            <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2">
+                {% for user in users %}
+                    {% if user not in project.members.all %}
+                    <form method="POST" class="flex justify-between items-center bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <input type="hidden" name="action" value="add">
+
+                        <span class="font-medium">
+                            {{ user.username }}
+                        </span>
+
+                        <button class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded-lg text-sm">
+                            Add
+                        </button>
+                    </form>
+                    {% endif %}
+                {% empty %}
+                    <p class="text-gray-400">No users available</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Remove Members -->
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+            <h3 class="text-lg font-semibold mb-4 text-red-400">
+                ❌ Remove Members
+            </h3>
+
+            <div class="space-y-3 max-h-[400px] overflow-y-auto pr-2">
+                {% for user in project.members.all %}
+                    {% if user != request.user %}
+                    <form method="POST" class="flex justify-between items-center bg-gray-700 p-3 rounded-lg hover:bg-gray-600 transition">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                        <input type="hidden" name="action" value="remove">
+
+                        <span class="font-medium">
+                            {{ user.username }}
+                        </span>
+
+                        <button class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-lg text-sm">
+                            Remove
+                        </button>
+                    </form>
+                    {% endif %}
+                {% empty %}
+                    <p class="text-gray-400">No members</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

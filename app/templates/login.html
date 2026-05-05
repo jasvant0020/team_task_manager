@@ -1,0 +1,26 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<form method="POST" class="bg-gray-800 p-8 rounded-xl w-96 shadow-lg">
+    {% csrf_token %}
+
+    <h2 class="text-3xl font-bold mb-6 text-center">Login</h2>
+
+    <input name="username" placeholder="Username"
+        class="w-full mb-4 px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+    <input name="password" type="password" placeholder="Password"
+        class="w-full mb-4 px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+    <button class="bg-green-500 hover:bg-green-600 transition px-4 py-2 w-full rounded-lg font-semibold">
+        Login
+    </button>
+
+    <p class="mt-4 text-sm text-center">
+        Don't have an account?
+        <a href="/register/" class="text-blue-400 hover:underline">Register</a>
+    </p>
+</form>
+{% endblock %}
