@@ -18,6 +18,13 @@ DEBUG = os.environ.get("DEBUG") == "True"
 ALLOWED_HOSTS = ["*"]
 
 
+import os
+if os.environ.get("RAILWAY_ENVIRONMENT"):
+    import subprocess
+    subprocess.run(["python", "manage.py", "migrate"])
+    subprocess.run(["python", "manage.py", "collectstatic", "--noinput"])
+
+
 # Application definition
 
 INSTALLED_APPS = [
