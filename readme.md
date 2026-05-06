@@ -80,7 +80,7 @@ python manage.py runserver
 
 ---
 
-# Tailwind Setup (if needed)
+# Tailwind Setup
 
 ```bash
 python manage.py tailwind install
