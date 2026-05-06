@@ -34,23 +34,47 @@ This app allows teams to collaborate by creating projects, assigning tasks, and 
 
 ## Role-Based Access
 
-* Admin → manage projects, members, tasks
-* Member → view and update assigned tasks only
+* Admin → manage projects, members, tasks  
+* Member → view and update assigned tasks only  
+
+---
+
+# Demo Credentials
+
+Use the following credentials to test the application:
+
+## Admin
+username=admin  
+password=temp@123  
+
+## Member 1
+username=member1  
+password=temp@123  
+
+## Member 2
+username=member2  
+password=temp@123  
+
+---
+
+# Demo Video
+
+Watch the full demo here:  
+https://your-demo-video-link.com
 
 ---
 
 # Tech Stack
 
-* Backend: Django
-* Frontend: Tailwind CSS
-* Database: SQLite (dev) / PostgreSQL (prod)
-* Deployment: Railway
+* Backend: Django  
+* Frontend: Tailwind CSS  
+* Database: SQLite (dev) / PostgreSQL (prod)  
+* Deployment: Railway  
 
 ---
 
 # Local Setup
 
-```bash
 # 1. Clone repository
 git clone https://github.com/YOUR_USERNAME/team_task_manager.git
 cd team_task_manager
@@ -59,6 +83,7 @@ cd team_task_manager
 python -m venv venv
 
 # 3. Activate virtual environment
+
 # Windows
 venv\Scripts\activate
 
@@ -76,38 +101,32 @@ python manage.py createsuperuser
 
 # 7. Run server
 python manage.py runserver
-```
 
 ---
 
 # Tailwind Setup
 
-```bash
-python manage.py tailwind install
-python manage.py tailwind start
-```
+python manage.py tailwind install  
+python manage.py tailwind start  
 
 ---
 
 # Deployment (Railway)
 
-```bash
 # 1. Initialize git
 git init
 git add .
 git commit -m "Initial commit"
 
 # 2. Connect to GitHub
-git remote add origin https://github.com/YOUR_USERNAME/team_task_manager.git
+git remote add origin https://github.com/jasvant0020/team_task_manager.git
 git branch -M main
 git push -u origin main
-```
 
 ---
 
-## Deploy on Railway
+# Deploy on Railway
 
-```bash
 # 1. Go to Railway
 https://railway.app/
 
@@ -117,9 +136,9 @@ https://railway.app/
 
 # 4. Add environment variables:
 
-DEBUG=False
-SECRET_KEY=your_secret_key
-ALLOWED_HOSTS=*
+DEBUG=False  
+SECRET_KEY=your_secret_key  
+ALLOWED_HOSTS=*  
 
 # 5. Add PostgreSQL service from Railway dashboard
 
@@ -128,40 +147,27 @@ python manage.py migrate
 
 # 7. Collect static files
 python manage.py collectstatic --noinput
-```
 
 ---
 
 # Environment Variables
 
-```bash
-DEBUG=False
-SECRET_KEY=your_secret_key
-DATABASE_URL=your_postgres_url
-ALLOWED_HOSTS=*
-```
-
----
-
-# Demo
-
-Include a 2–5 minute demo video explaining:
-
-* Project structure
-* Features
-* Role-based system
+DEBUG=False  
+SECRET_KEY=your_secret_key  
+DATABASE_URL=your_postgres_url  
+ALLOWED_HOSTS=*  
 
 ---
 
 # Notes
 
-* Only Admin can create projects and assign tasks
-* Members can only update their assigned tasks
-* Proper access control implemented across all views
+* Only Admin can create projects and assign tasks  
+* Members can only update their assigned tasks  
+* Proper access control implemented across all views  
 
 ---
 
 # Author
 
-Your Name
-GitHub: https://github.com/YOUR_USERNAME
+JASVANT  
+https://github.com/jasvant0020
