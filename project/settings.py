@@ -141,13 +141,21 @@ USE_TZ = True
 # STATICFILES_DIRS = [
 #     BASE_DIR / "theme" / "static",
 # ]
+
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Important for django-tailwind
 STATICFILES_DIRS = [
-    BASE_DIR / "theme" / "static",
+    BASE_DIR / "theme/static"
 ]
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# # Important for django-tailwind
+# STATICFILES_DIRS = [
+#     BASE_DIR / "theme" / "static",
+# ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
