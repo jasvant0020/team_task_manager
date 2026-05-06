@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "packages": {
+    "node": "20",
+    "python": "3.13"
+  },
+  "build": {
+    "commands": [
+      "npm ci --include=dev",
+      "python manage.py tailwind build",
+      "python manage.py collectstatic --noinput --clear"
+    ]
+  }
+}
