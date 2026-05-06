@@ -6,9 +6,10 @@
   },
   "build": {
     "commands": [
-      "cd theme/static_src && npm ci --include=dev",
+      "cd theme/static_src && npm install --include=dev",
       "python manage.py tailwind build",
-      "python manage.py collectstatic --noinput --clear"
+      "python manage.py collectstatic --noinput --clear",
+      "ls -la theme/static/css/dist/"
     ]
   }
 }
