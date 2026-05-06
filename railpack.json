@@ -9,7 +9,8 @@
       "cd theme/static_src && npm install --include=dev",
       "python manage.py tailwind build",
       "python manage.py collectstatic --noinput --clear",
-      "ls -la theme/static/css/dist/"
+      "ls -la theme/static/css/dist/ || echo 'dist folder not found'",
+      "find . -name styles.css | head -10"
     ]
   }
 }
