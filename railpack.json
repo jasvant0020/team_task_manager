@@ -3,14 +3,5 @@
   "packages": {
     "node": "20",
     "python": "3.13"
-  },
-  "build": {
-    "commands": [
-      "npm --prefix theme/static_src install --include=dev",
-      "python manage.py tailwind build",
-      "python manage.py collectstatic --noinput --clear",
-      "ls -la theme/static/css/dist/ || echo '=== dist folder missing ==='",
-      "find theme -name styles.css || echo '=== styles.css not found ==='"
-    ]
   }
 }

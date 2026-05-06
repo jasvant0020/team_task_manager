@@ -36,7 +36,8 @@ INSTALLED_APPS = [
 
 TAILWIND_APP_NAME = "theme"
 INTERNAL_IPS = ["127.0.0.1"]
-NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
+import shutil
+NPM_BIN_PATH = shutil.which("npm")
 AUTH_USER_MODEL = 'app.User'
 
 
@@ -146,7 +147,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "theme" / "static",
+    BASE_DIR / "theme" / "static_src",
 ]
 
 # STATIC_URL = '/static/'
