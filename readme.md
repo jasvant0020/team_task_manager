@@ -76,7 +76,7 @@ https://your-demo-video-link.com
 # Local Setup
 
 # 1. Clone repository
-git clone https://github.com/YOUR_USERNAME/team_task_manager.git
+git clone https://github.com/jasvant0020/team_task_manager.git 
 cd team_task_manager
 
 # 2. Create virtual environment
